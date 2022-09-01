@@ -29,7 +29,7 @@ var loadEvents = function () {
 };
 
 // save button was clicked
-$("#nine-amBtn .saveBTN").click(function () {
+$("#nine-am .saveBTN").click(function () {
     // get form values
     var eventText = $("#nine-am-event").val();
     // var taskDate = $("#modalDueDate").val();
