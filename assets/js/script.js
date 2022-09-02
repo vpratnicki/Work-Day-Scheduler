@@ -6,26 +6,53 @@ var todayTime = moment().format("hh:mm A");
 $("#currentDay").html(todayDate);
 $("#currentTime").html(todayTime);
 
-  // convert to moment object at 5pm
-  var time = moment(date, "L").set("hour", 17);
 
-  // apply new clsss if event is in the past
-  // apply new class if event is in the present
-  // apply new class if event is in the future
-  if (moment().isBefore(time)){
-    $(".time-block").addClass("future");
-  } 
-  else if (moment().isSame(time)) {
-        $(".time-block").addClass("present");
+  // compare current time with 'all hours' but need to get
+
+
+
+  function compareTime() {
+    // //get current number of hours.
+    // var timeNow = moment().hour();
+
+    // loop through the time rows
+    $(".time-block").each(function () {
+        var timeValueInRows = parseInt($(this).attr("id").split("hour")[1]);
+        
+    // apply new clsss if event is in the past
+    // apply new class if event is in the present
+    // apply new class if event is in the future
+    if (timeValueInRows < todayTime) {
+       $(this).removeClass("future");
+       $(this).removeClass("present");
+       $(this).addClass("past");
+
+    } 
+    else if (timeValueInRows === todayTime) {
+        $(this).removeClass("past");
+        $(this).removeClass("future");
+        $(this).addClass("present");
+    } 
+    else {
+        $(this).removeClass("past");
+        $(this).removeClass("future");
+        $(this).addClass("future");
+    }
+})
   }
-  else (moment().isAfter(time)) {
-    $(".time-block").addClass("past");
-  }
 
-
-
-
-
+//   $.each(allHours, function (i) {
+//     var hourId = parseInt($(this).attr("id"));
+//     if (hourId === currentTime) {
+//       $(this).next().addClass("present");
+//     } else if (hourId < currentTime) {
+//       $(this).next().addClass("past");
+//     } else if (hourId > currentTime) {
+//       $(this).next().addClass("future");
+//     }
+//   });
+// }
+// compareTime();
 
 
 $(".saveBtn").click(function () {
@@ -49,4 +76,4 @@ $("#1500 .description").val(localStorage.getItem("1500"));
 $("#1600 .description").val(localStorage.getItem("1600"));
 $("#1700 .description").val(localStorage.getItem("1700"));
 
-
+compareTime();
