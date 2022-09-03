@@ -1,46 +1,27 @@
-// Display today's day and date
+// Current day and time (standard format)
 var todayDate = moment().format("dddd, MMM Do YYYY");
 var todayTime = moment().format("hh:mm A");
+// current hour in mility time
+var todayTimeMilitary = moment().hours();
 
+// Display today's day and date in th header
 $("#currentDay").html(todayDate);
 $("#currentTime").html(todayTime);
 
+
 function compareTime() {
-  // get current number of hours.
-  // loop through the time rows
+  // target the time-block and get the id
   $(".time-block").each(function () {
     const theElement = $(this); // that has timeblock
-    const theElementsId = theElement.attr("id"); // turn: timeBlock-9
-    const theElementTime = theElementsId.replace("timeBlock-", ""); // into: 9
-    //console.log(theElementTime);
+    const theElementsId = theElement.attr("id"); 
+    const theElementTime = theElementsId.replace("timeBlock-", ""); // turn: timeBlock-9 into: 9
+    // convert string into a number
     const timeValueInRows = parseInt(theElementTime);
+    // const timeValueInRows = 13;
 
     // convert the current time string into number
-    const todayTimeHour = todayTime.slice(0, 2); // changes time string into: 10:00 AM in 10
-    console.log(todayTimeHour);
-    const todayHourAsNumber = parseInt(todayTimeHour);
-
-    //convert into military time
-    const timeValueInRowsAsMilitary = function () {
-        if (timeValueInRows === 1) {
-            // add 12 here
-            timeValueInRows += 12;
-        } else if (timeValueInRows === 2) {
-            // add 12 here
-            timeValueInRows += 12;
-        } else if (timeValueInRows === 3) {
-            // add 12 here
-            timeValueInRows += 12;
-        } else if (timeValueInRows === 4) {
-           // add 12 here
-           timeValueInRows += 12;
-        } else if (timeValueInRows === 5) {
-            // add 12 here
-            timeValueInRows += 12;
-        } else {
-            console.log(timeValueInRows)
-        }
-    };
+    const todayHourAsNumber = parseInt(todayTimeMilitary);
+    // const todayHourAsNumber = 13;
 
     console.log(timeValueInRows, todayHourAsNumber);
     // apply new clsss if event is in the past
