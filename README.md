@@ -23,7 +23,7 @@ Next I displayed the date and time, using Moment.js, to the page header and defi
 
 ![Screenshot of compare time function](/assets/images/screenshot2.png)
 
-## Build with
+## Built with
 
 - HTML
 - Bootstrap
